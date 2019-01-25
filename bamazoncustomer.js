@@ -24,7 +24,7 @@ function startPrompt() {
       {
         type: "confirm",
         name: "confirm",
-        message: "Welcome to Bamazon! Would you like to view our inventory?",
+        message: "Welcome to Bamazon, Would you like to see our inventory?",
         default: true
       }
     ])
@@ -32,7 +32,7 @@ function startPrompt() {
       if (user.confirm === true) {
         inventory();
       } else {
-        console.log("Thank you! Come back soon!");
+        console.log("Thanks. Please come again!");
       }
     });
 }
@@ -48,7 +48,7 @@ function inventory() {
 
   listInventory();
 
-  // table is an Array, so you can `push`, `unshift`, `splice` and friends
+  // table is an Array
   function listInventory() {
     //Variable creation from DB connection
 
@@ -82,7 +82,7 @@ function continuePrompt() {
       {
         type: "confirm",
         name: "continue",
-        message: "Would you like to purchase an item?",
+        message: "Do you see an item you would like to purchase?",
         default: true
       }
     ])
