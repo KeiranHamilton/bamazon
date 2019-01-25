@@ -14,3 +14,4 @@ enough inventory for what the user would like to purchase it will let the user k
 * MYSQL Work Bench
 * Inquirer (cli table & prompt)
 * Gitbash
+* MAMP
