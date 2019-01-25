@@ -16,8 +16,7 @@ connection.connect(function(err) {
   startPrompt();
 });
 
-//=================================Inquirer introduction===============================
-
+//inquirer prompt
 function startPrompt() {
   inquirer
     .prompt([
@@ -37,10 +36,9 @@ function startPrompt() {
     });
 }
 
-//=================================Inventory===============================
+//inventory table
 
 function inventory() {
-  // instantiate
   var table = new Table({
     head: ["ID", "Item", "Department", "Price", "Stock"],
     colWidths: [10, 30, 30, 30, 30]
@@ -50,7 +48,7 @@ function inventory() {
 
   // table is an Array
   function listInventory() {
-    //Variable creation from DB connection
+    //Variables created from DB connection
 
     connection.query("SELECT * FROM products", function(err, res) {
       for (var i = 0; i < res.length; i++) {
@@ -74,7 +72,7 @@ function inventory() {
   }
 }
 
-//=================================Inquirer user purchase===============================
+//inquirer purchase
 
 function continuePrompt() {
   inquirer
@@ -113,7 +111,7 @@ function selectionPrompt() {
       }
     ])
     .then(function(userPurchase) {
-      //connect to database to find stock_quantity in database. If user quantity input is greater than stock, decline purchase.
+      //connect to database to find stock_quantity in database. If user quantity input is greater than stock, cancel purchase.
 
       connection.query(
         "SELECT * FROM products WHERE item_id=?",
@@ -125,7 +123,7 @@ function selectionPrompt() {
                 "==================================================="
               );
               console.log(
-                "Sorry! Not enough in stock. Please try again later."
+                "Sorry! We dont have enough inventory to fill your order at this time."
               );
               console.log(
                 "==================================================="
@@ -133,11 +131,11 @@ function selectionPrompt() {
               startPrompt();
             } else {
               //list item information for user for confirm prompt
-              console.log("===================================");
-              console.log("Awesome! We can fulfull your order.");
+
+              console.log("Great! We can complete your order.");
               console.log("===================================");
               console.log("You've selected:");
-              console.log("----------------");
+              console.log("-----------------------------------");
               console.log("Item: " + res[i].product_name);
               console.log("Department: " + res[i].department_name);
               console.log("Price: " + res[i].price);
@@ -157,7 +155,7 @@ function selectionPrompt() {
     });
 }
 
-//=================================Confirm Purchase===============================
+//Confirm Purchase
 
 function confirmPrompt(newStock, purchaseId) {
   inquirer
@@ -189,12 +187,12 @@ function confirmPrompt(newStock, purchaseId) {
 
         console.log("=================================");
         console.log("Transaction completed. Thank you.");
-        console.log("=================================");
+
         startPrompt();
       } else {
         console.log("=================================");
         console.log("No worries. Maybe next time!");
-        console.log("=================================");
+
         startPrompt();
       }
     });
