@@ -1,4 +1,4 @@
-# Bamazoncustomer.js
+# Bamazon
 
 ## About The App
 
