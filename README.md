@@ -15,3 +15,5 @@ enough inventory for what the user would like to purchase it will let the user k
 * Inquirer (cli table & prompt)
 * Gitbash
 * MAMP
+
+![](bamazonvid.gif)
